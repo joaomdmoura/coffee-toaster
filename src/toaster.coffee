@@ -20,10 +20,17 @@ class Toaster
 	constructor:->
 		argv = optimist.usage("#{'Coffee Toaster'.cyan.bold}
      	\n#{'Minimalist dependency management system for coffee-script.'.grey}
-     	\n#{'Usage:'.grey.bold} $0")
+     	\n#{'Usage:'.grey.bold} $0 #{'[options]'.bold} #{'[myappname]'.bold}")
     	.alias('n', 'new')
     	.alias('h', 'help')
+    	.alias('s', 'script')
+    	.alias('k', 'kup')
+    	.boolean('s')
+    	.boolean('k')
+    	.default({ s : true, k: true })
     	.describe('n', 'Creating a new App')
+    	.describe('s', 'Toast your CoffeeScript')
+    	.describe('k', 'Toast your CoffeeKup')
 
 		@basepath = path.resolve(".")    	
 
@@ -65,7 +72,8 @@ class Toaster
 				# 			]
 				# 			kup: [
 				# 				name: "My Kup Module"
-				# 				something_more_here: "third_eye"
+				# 				src: "src/kup"
+				# 				release: "release/app.js"
 				# 			]
 				# 			css: [
 				# 				name: "My Css Module"
